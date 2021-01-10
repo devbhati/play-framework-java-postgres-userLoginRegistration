@@ -52,10 +52,10 @@ public class HomeController extends Controller {
 
     public Result login(Http.Request request) {
         final Form<Login> boundForm = loginForm.bindFromRequest(request);
-        Login login = boundForm.get();
         if (boundForm.hasErrors()) {
-            return badRequest(register.render(userForm, request, messagesApi.preferred(request)));
+            return badRequest(login.render(loginForm, request, messagesApi.preferred(request)));
         } else {
+            Login login = boundForm.get();
             boolean result = getFromTable(login);
             if(result) {
                 return ok(dashboard.render(getUserByEmail(login.getEmail()))).addingToSession(request, "user", login.getEmail());
@@ -66,10 +66,10 @@ public class HomeController extends Controller {
 
     public Result signup(Http.Request request) {
         final Form<User> boundForm = userForm.bindFromRequest(request);
-        User user = boundForm.get();
         if (boundForm.hasErrors()) {
             return badRequest(register.render(userForm, request, messagesApi.preferred(request)));
         } else {
+            User user = boundForm.get();
             insertIntoTable(user);
             return login_page(request);
         }

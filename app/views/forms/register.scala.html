@@ -8,21 +8,19 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("/css/main.css")">
     </head>
     <body>
-        <h1 style="text-align: center">Sign up page!</h1>
-        <br><br>
-        <div class="row">
-            <div class="col-5"></div>
-            <div class="col-6">
-            @helper.form(action = routes.HomeController.signup()) {
-                @helper.CSRF.formField
+        <div class="container">
+            <h1 style="text-align: center">Sign up page!</h1>
+            <br>
+            <div class="row" style="margin: 0 300">
+                @helper.form(action = routes.HomeController.signup()) {
+                    @helper.CSRF.formField
 
-                @helper.inputText(userForm("firstName"))
-                @helper.inputText(userForm("lastName"))
-                @helper.inputText(userForm("email"))
-                @helper.inputPassword(userForm("password"))
-                <br>
-                <input type="submit" value="Sign up!">
-            }
+                    @helper.inputText(userForm("firstName"), Symbol("class")->"form-control", Symbol("_label")->"First name:")
+                    @helper.inputText(userForm("lastName"), Symbol("class")->"form-control", Symbol("_label")->"Last name:")
+                    @helper.inputText(userForm("email"), Symbol("class")->"form-control",  Symbol("_label")->"Email:")
+                    @helper.inputPassword(userForm("password"), Symbol("class")->"form-control",  Symbol("_label")->"Password:")
+                    <input type="submit" value="Sign up!" class="btn btn-success">
+                    }
             </div>
         </div>
         <script src="@routes.Assets.versioned("/js/main.js")" ></script>

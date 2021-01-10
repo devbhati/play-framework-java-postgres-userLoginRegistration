@@ -1,10 +1,15 @@
 package models;
 
+import play.data.validation.Constraints;
+
 public class Login {
 
+    @Constraints.Required
     public String email;
+
+    @Constraints.Required
     public String password;
-    public int status;
+
 
     public Login() {
     }
@@ -15,14 +20,6 @@ public class Login {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public String getEmail() {
@@ -38,7 +35,6 @@ public class Login {
         return "Login{" +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", status=" + status +
                 '}';
     }
 }

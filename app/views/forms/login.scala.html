@@ -8,19 +8,14 @@
     </head>
     <body>
         <h1 style="text-align: center">Log in page!</h1>
-        <br><br>
-        <div class="row">
-            <div class="col-5"></div>
-            <div class="col-6">
+        <br>
+        <div class="row" style="margin: 0 350">
             @helper.form(action = routes.HomeController.login()) {
                 @helper.CSRF.formField
-
-                @helper.inputText(loginForm("email"))
-                @helper.inputPassword(loginForm("password"))
-                <br>
-                <input type="submit" value="Sign in!">
+                @helper.inputText(loginForm("email"), Symbol("class")->"form-control", Symbol("_label")->"Email:")
+                @helper.inputPassword(loginForm("password"), Symbol("class")->"form-control", Symbol("_label")->"Password:")
+                <input type="submit" value="Sign in!" class="btn btn-success">
             }
-            </div>
         </div>
         <script src="@routes.Assets.versioned("/js/main.js")" ></script>
         <script src="@routes.Assets.versioned("/js/bootstrap.min.js")" ></script>

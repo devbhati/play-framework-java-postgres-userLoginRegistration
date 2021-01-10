@@ -1,10 +1,20 @@
 package models;
 
+import play.data.validation.Constraints;
+
 public class User{
 
+    @Constraints.Required
     String firstName;
+
+    @Constraints.Required
     String lastName;
+
+    @Constraints.Required
+    @Constraints.Email
     String email;
+
+    @Constraints.Required
     String password;
 
     public User(){}
