@@ -11,12 +11,11 @@ lazy val postgresVersion = "42.2.18"
 
 scalaVersion := "2.13.3"
 
-libraryDependencies += guice
-
 libraryDependencies ++= Seq(
   jdbc,
   javaWs,
   guice,
+  javaForms,
   javaJdbc,
   evolutions,
   "org.postgresql"  % "postgresql"    % postgresVersion,
