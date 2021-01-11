@@ -13,17 +13,14 @@ import views.html.applicationPage.dashboard;
 import javax.inject.Inject;
 
 import java.util.List;
-import java.util.Map;
 
 import static Utility.DBUtility.*;
-import Utility.Utility;
 
 public class HomeController extends Controller {
 
     private final Form<User> userForm;
     private final Form<Login> loginForm;
     private final MessagesApi messagesApi;
-    private Utility utility;
 
     @Inject
     public HomeController(FormFactory formFactory, MessagesApi messagesApi) {
@@ -73,14 +70,6 @@ public class HomeController extends Controller {
     public Result signup(Http.Request request) {
         final Form<User> boundForm = userForm.bindFromRequest(request);
         if (boundForm.hasErrors()) {
-            List<ValidationError> errorAll = boundForm.errors();
-            String errorMessage = "";
-            for(ValidationError validationError : errorAll) {
-                String field = validationError.key();
-                String error = validationError.message();
-                errorMessage += error + " in " + field + ", ";
-            }
-            request.session().adding("error", "Please correct the following errors: "+errorMessage);
             return badRequest(register.render(userForm, request, messagesApi.preferred(request)));
         } else {
             User user = boundForm.get();
